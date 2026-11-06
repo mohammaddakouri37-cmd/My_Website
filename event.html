@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل الفعالية - دليل الفعاليات الجامعية | SVU</title>
+    <!-- Bootstrap 5 CSS RTL -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts Cairo & Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <!-- شريط التنقل العلوي (Navbar) -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-mortarboard-fill me-2 text-info"></i>دليل فعاليات الجامعة الافتراضية السورية
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="تبديل القائمة">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="events.html">الفعاليات</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">عن الدليل</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+
+        <!-- مسار التنقل Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb bg-white p-3 rounded-3 border shadow-sm">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none"><i class="bi bi-house-door me-1"></i>الرئيسية</a></li>
+                <li class="breadcrumb-item"><a href="events.html" class="text-decoration-none">الفعاليات</a></li>
+                <li class="breadcrumb-item active fw-bold text-primary" id="breadTitle" aria-current="page">تفاصيل الفعالية</li>
+            </ol>
+        </nav>
+
+        <div class="row g-4" id="eventContent">
+            <!-- المحتوى الرئيسي للفعالية -->
+            <div class="col-lg-8">
+                <div class="bg-white p-4 rounded-3 border shadow-sm mb-4">
+                    <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+                        <h2 id="eventTitle" class="fw-bold text-brand mb-0"></h2>
+                        <span id="eventBadge" class="badge fs-6 px-3 py-2"></span>
+                    </div>
+
+                    <img id="eventImage" class="img-fluid rounded-3 shadow-sm mb-4 w-100" style="max-height: 420px; object-fit: cover;" alt="صورة الفعالية">
+
+                    <h5 class="fw-bold text-brand mb-3">نبذة وتفاصيل النشاط</h5>
+                    <p class="fs-6 text-secondary-emphasis leading-relaxed mb-4" id="eventDesc"></p>
+
+                    <!-- صناديق المعلومات السريعة -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-sm-4">
+                            <div class="p-3 rounded-3 border text-center h-100" style="background:#f1f5f9;">
+                                <i class="bi bi-calendar3 text-primary fs-3"></i>
+                                <p class="mb-1 mt-2 fw-bold text-brand">التاريخ والموعد</p>
+                                <p class="mb-0 text-muted small" id="eventDate"></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="p-3 rounded-3 border text-center h-100" style="background:#f1f5f9;">
+                                <i class="bi bi-geo-alt text-danger fs-3"></i>
+                                <p class="mb-1 mt-2 fw-bold text-brand">المكان والمدينة</p>
+                                <p class="mb-0 text-muted small" id="eventPlace"></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="p-3 rounded-3 border text-center h-100" style="background:#f1f5f9;">
+                                <i class="bi bi-tags text-success fs-3"></i>
+                                <p class="mb-1 mt-2 fw-bold text-brand">تصنيف الفعالية</p>
+                                <p class="mb-0 text-muted small" id="eventCat"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- أزرار الإجراءات التفاعلية -->
+                    <div class="d-flex gap-2 flex-wrap pt-2">
+                        <button class="btn btn-success px-4" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                            <i class="bi bi-ticket-perforated me-1"></i>تسجيل حضور وحجز مقعد
+                        </button>
+                        <button class="btn btn-outline-brand" onclick="shareEvent()">
+                            <i class="bi bi-share me-1"></i>مشاركة الرابط
+                        </button>
+                        <a href="events.html" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-right me-1"></i>الرجوع للفعاليات
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- الشريط الجانبي (الموقع والبطاقة) -->
+            <div class="col-lg-4">
+                <!-- بطاقة الحجز المباشر -->
+                <div class="card shadow-sm mb-4 border">
+                    <div class="card-body text-center p-4">
+                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-success bg-opacity-10 text-success mb-3" style="width: 56px; height: 56px;">
+                            <i class="bi bi-calendar-check fs-3"></i>
+                        </div>
+                        <h5 class="fw-bold text-brand">سجل حضورك الآن</h5>
+                        <p class="small text-muted mb-3">المقاعد محدودة لضمان التنظيم الأكاديمي، سارع بتأكيد رغبتك بالحضور.</p>
+                        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#bookingModal">
+                            <i class="bi bi-person-plus me-1"></i>حجز مقعد مجاني
+                        </button>
+                    </div>
+                </div>
+
+                <!-- خريطة وموقع الفعالية -->
+                <div class="card shadow-sm border">
+                    <div class="card-header bg-brand text-white fw-bold py-3">
+                        <i class="bi bi-geo-alt-fill me-2 text-info"></i>موقع ومكان الفعالية
+                    </div>
+                    <div class="card-body p-0">
+                        <img id="mapImage" 
+                             src="https://tile.openstreetmap.org/6/38/24.png"
+                             class="img-fluid w-100" 
+                             style="height: 220px; object-fit: cover;"
+                             alt="خريطة الموقع الجغرافي">
+                        <div class="p-3">
+                            <p class="mb-0 text-muted small">
+                                <i class="bi bi-pin-map-fill text-danger me-1"></i>
+                                <span id="mapLabel" class="fw-bold"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- فعاليات أخرى ذات صلة -->
+        <div class="mt-5 pt-3">
+            <h4 class="section-title">فعاليات طلابية أخرى قد تهمك</h4>
+            <div class="row g-4 mt-1" id="relatedEvents"></div>
+        </div>
+    </div>
+
+    <!-- نافذة المودال لحجز المقعد والتسجيل -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-brand text-white">
+                    <h5 class="modal-title" id="bookingModalLabel">
+                        <i class="bi bi-ticket-perforated-fill me-2 text-info"></i>حجز مقعد في الفعالية
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div id="bookMsg"></div>
+                    <form id="bookingForm" onsubmit="event.preventDefault(); confirmBooking();">
+                        <div class="mb-3">
+                            <label for="bookName" class="form-label fw-bold small">الاسم الكامل <span class="text-danger">*</span></label>
+                            <input type="text" id="bookName" class="form-control" placeholder="أدخل اسمك الثلاثي" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bookEmail" class="form-label fw-bold small">البريد الجامعي أو الشخصي <span class="text-danger">*</span></label>
+                            <input type="email" id="bookEmail" class="form-control" placeholder="example@svu.edu.sy" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="bookCount" class="form-label fw-bold small">عدد المقاعد المطلوبة</label>
+                            <select class="form-select" id="bookCount">
+                                <option value="1">شخص واحد</option>
+                                <option value="2">شخصان (2)</option>
+                                <option value="3">3 أشخاص</option>
+                                <option value="4">فريق (4 أشخاص)</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <button type="button" class="btn btn-secondary btn-sm px-3" data-bs-dismiss="modal">إلغاء</button>
+                            <button type="submit" class="btn btn-success btn-sm px-4">تأكيد التسجيل</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة (Footer) -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p class="mb-0 small text-light opacity-75">© 2026 دليل الفعاليات الجامعية - الجامعة الافتراضية السورية (SVU) - جميع الحقوق محفوظة</p>
+        </div>
+    </footer>
+
+    <!-- زر الصعود للأعلى (Scroll to Top) -->
+    <button id="scrollTop" aria-label="الرجوع للأعلى">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // قاعدة بيانات الفعاليات المحدثة
+        const eventsData = {
+            1: {
+                title: "ماراثون البرمجة والذكاء الاصطناعي 2026",
+                badge: "مسابقات وبرمجة",
+                badgeColor: "bg-primary text-white",
+                image: "images/hackathon.jpg",
+                desc: "تحدي برمجي تنافسي ومكثف لفرق طلابية من كليات الهندسة المعلوماتية وتقانة المعلومات، للتنافس على مدار 48 ساعة في بناء حلول تقنية ونماذج ذكية تعتمد على خوارزميات الذكاء الاصطناعي والأنظمة السحابية. يحصل المشاركون على شهادات مشاركة معتمدة مع جوائز مالية قيّمة للمراكز الأولى، إلى جانب فرص تشبيك مع شركات تقنية رائدة.",
+                date: "الجمعة 18 ديسمبر 2026 - الساعة 10:00 صباحاً",
+                place: "دمشق - مركز رضا سعيد للمؤتمرات",
+                cat: "مسابقات وتقانة"
+            },
+            2: {
+                title: "معرض الروبوتات والأنظمة الذكية",
+                badge: "علمي وتقني",
+                badgeColor: "bg-info text-dark",
+                image: "images/robotics.jpg",
+                desc: "معرض سنوي تطبيقي يستعرض ابتكارات الطلاب ومشاريع التخرج الرائدة في مجالات الروبوتات المستقلة، الأذرع الآلية الذكية، والأنظمة المدمجة وإنترنت الأشياء (IoT). يتيح المعرض تجارب حية تفاعلية للزوار، وجلسات حوارية مع مطوري النماذج الصناعية والطبية.",
+                date: "الأحد 27 ديسمبر 2026 - الساعة 11:30 صباحاً",
+                place: "حلب - مركز الأبحاث والابتكار التقني",
+                cat: "علمي وروبوتات"
+            },
+            3: {
+                title: "ملتقى تصميم واجهات وتجربة المستخدم (UI/UX)",
+                badge: "ثقافي وإبداعي",
+                badgeColor: "bg-warning text-dark",
+                image: "images/uiux.jpg",
+                desc: "ملتقى تفاعلي يركز على فنون وهندسة تجربة المستخدم وبناء الواجهات الرقمية الجذابة. يضم الحدث ورش عمل تدريبية متقدمة في Figma وأساليب تحليل سلوك المستخدم وتصميم الهويات البصرية التفاعلية بإشراف نخبة من مصممي المنتجات الرقمية والوسائط المتعددة.",
+                date: "الخميس 8 يناير 2027 - الساعة 02:00 ظهراً",
+                place: "حمص - المركز الرقمي للوسائط والإبداع",
+                cat: "ثقافي وتصميم"
+            },
+            4: {
+                title: "بطولة الجامعة السنوية للشطرنج السريع",
+                badge: "رياضي وألعاب ذهن",
+                badgeColor: "bg-success text-white",
+                image: "images/chess.jpg",
+                desc: "البطولة الرسمية التنافسية لطلبة الجامعة الافتراضية السورية في رياضة الشطرنج السريع وفق النظام السويسري المعتمد من الاتحاد الدولي. تشمل البطولة كؤوس وميداليات تذكارية وجوائز تكريمية للفائزين، مع ترشيح الفائزين لتمثيل الجامعة في المسابقات الوطنية المركزية.",
+                date: "الأربعاء 20 يناير 2027 - الساعة 09:30 صباحاً",
+                place: "اللاذقية - الصالة الرياضية الجامعية الكبرى",
+                cat: "رياضي وذهني"
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const eventId = params.get("id") || "1";
+        const ev = eventsData[eventId];
+
+        if (ev) {
+            document.getElementById("eventTitle").innerText = ev.title;
+            const badgeEl = document.getElementById("eventBadge");
+            badgeEl.innerText = ev.badge;
+            badgeEl.className = `badge ${ev.badgeColor} fs-6 px-3 py-2`;
+            
+            document.getElementById("eventImage").src = ev.image;
+            document.getElementById("eventImage").alt = ev.title;
+            document.getElementById("eventDesc").innerText = ev.desc;
+            document.getElementById("eventDate").innerText = ev.date;
+            document.getElementById("eventPlace").innerText = ev.place;
+            document.getElementById("eventCat").innerText = ev.cat;
+            document.getElementById("breadTitle").innerText = ev.title;
+            document.getElementById("mapLabel").innerText = ev.place + " - " + ev.title;
+
+            // عرض الفعاليات الأخرى ذات الصلة
+            const relatedContainer = document.getElementById("relatedEvents");
+            const otherEvents = Object.entries(eventsData).filter(([id]) => id !== eventId);
+            
+            otherEvents.forEach(([id, item]) => {
+                relatedContainer.innerHTML += `
+                    <div class="col-md-4">
+                        <div class="card h-100 border">
+                            <img src="${item.image}" class="card-img-top" alt="${item.title}" style="height:170px; object-fit:cover;">
+                            <div class="card-body d-flex flex-column">
+                                <span class="badge ${item.badgeColor} mb-2 align-self-start small">${item.badge}</span>
+                                <h6 class="card-title fw-bold fs-6">${item.title}</h6>
+                                <p class="small text-muted mt-auto mb-2"><i class="bi bi-calendar3 me-1"></i>${item.date}</p>
+                                <a href="event.html?id=${id}" class="btn btn-outline-brand btn-sm w-100">عرض التفاصيل</a>
+                            </div>
+                        </div>
+                    </div>`;
+            });
+        } else {
+            document.getElementById("eventContent").innerHTML = `
+                <div class="col-12 text-center py-5">
+                    <i class="bi bi-exclamation-circle text-danger" style="font-size:3rem;"></i>
+                    <h3 class="mt-3">عذراً، الفعالية غير موجودة</h3>
+                    <p class="text-muted">الرابط الذي اتبعته غير صحيح أو تم نقل الفعالية.</p>
+                    <a href="events.html" class="btn btn-primary mt-2">العودة لدليل الفعاليات</a>
+                </div>`;
+        }
+
+        // دالة تأكيد الحجز
+        function confirmBooking() {
+            const name = document.getElementById('bookName').value.trim();
+            const email = document.getElementById('bookEmail').value.trim();
+            const msgBox = document.getElementById('bookMsg');
+
+            if (!name || !email) {
+                msgBox.innerHTML = "<div class='alert alert-danger py-2 small'>يرجى ملء جميع الحقول المطلوبة.</div>";
+                return;
+            }
+            if (!email.includes('@') || !email.includes('.')) {
+                msgBox.innerHTML = "<div class='alert alert-danger py-2 small'>يرجى إدخال بريد إلكتروني صالح.</div>";
+                return;
+            }
+
+            msgBox.innerHTML = "<div class='alert alert-success py-2 small'><i class='bi bi-check-circle-fill me-1'></i>تم تسجيل طلب حجزك بنجاح! سيتم إرسال بطاقة التأكيد إلى بريدك.</div>";
+            setTimeout(() => {
+                const modalEl = document.getElementById('bookingModal');
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                if (modal) modal.hide();
+                msgBox.innerHTML = "";
+                document.getElementById('bookingForm').reset();
+            }, 2200);
+        }
+
+        // دالة مشاركة الرابط
+        function shareEvent() {
+            if (navigator.share) {
+                navigator.share({
+                    title: ev ? ev.title : document.title,
+                    text: ev ? ev.desc : "",
+                    url: window.location.href
+                }).catch(() => {});
+            } else {
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('تم نسخ رابط الفعالية بنجاح إلى الحافظة!');
+                });
+            }
+        }
+
+        // زر الصعود للأعلى
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('scrollTop');
+            if (btn) btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+        document.getElementById('scrollTop')?.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
